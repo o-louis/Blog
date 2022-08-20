@@ -19,8 +19,8 @@ interface Props {
 }
 
 export default function Home({ allPostsData }: Props) {
-  const width = 450;
-  const height = 280;
+  const width = 400;
+  const height = 210;
 
   return (
     <Layout home>
