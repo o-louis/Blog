@@ -44,7 +44,7 @@ export default function Home({ allPostsData }: Props) {
                 />
                 <div className={`flex flex-col max-w-md ${isLatestPost ? 'ml-8' : '' }`}>
                   <Date dateString={date} className={`text-sm text-gray-500 ${isLatestPost ? '' : 'mt-4' }`} />
-                  <Link href={`/posts/${id}`}>
+                  <Link href={`/articles/${id}`}>
                     <a className="flex flex-col mt-2">
                       <span className={`font-semibold ${isLatestPost ? 'text-3xl' : 'text-xl'}`}>{title}</span>
                       <span className={`mt-4 fomt-medium text-paragraph ${isLatestPost ? 'text-lg' : 'text-sm'}`}>{description}</span>
