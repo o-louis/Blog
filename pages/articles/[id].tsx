@@ -5,7 +5,7 @@ import { GetStaticProps, GetStaticPaths } from 'next';
 import { getAllPostIds, getPostData } from '../../lib/posts';
 import Layout from '../../components/Layout';
 import Date from '../../components/Date';
-import { buildImage } from '../../lib/utils'
+import { buildImage } from '../../lib/utils';
 
 interface Props {
   postData: {
@@ -13,13 +13,13 @@ interface Props {
     date: string;
     image?: string;
     contentHtml: string;
-    tags: string[],
-  }
+    tags: string[];
+  };
 }
 
 export default function Post({ postData }: Props) {
   const width = 1024;
-  const height =  384;
+  const height = 384;
   const urlImage = buildImage(postData.image, width, height);
   return (
     <Layout>
@@ -35,23 +35,28 @@ export default function Post({ postData }: Props) {
           className="object-cover rounded-sm"
         />
         <div className="px-8 flex flex-col">
-          <h1 className="mt-8 text-3xl font-bold text-main">{postData.title}</h1>
+          <h1 className="mt-8 text-3xl font-bold text-main">
+            {postData.title}
+          </h1>
           <Date dateString={postData.date} className="mt-4 text-gray-500" />
-          <div className="prose mt-10 text-lg text-paragraph font-light" dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+          <div
+            className="prose mt-10 text-lg text-paragraph font-light"
+            dangerouslySetInnerHTML={{ __html: postData.contentHtml }}
+          />
         </div>
       </article>
     </Layout>
   );
 }
 
-export const getStaticProps: GetStaticProps = async({ params }) => {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const postData = await getPostData(params.id);
   return {
     props: {
       postData,
     },
   };
-}
+};
 
 export const getStaticPaths: GetStaticPaths = () => {
   const paths = getAllPostIds();
@@ -59,4 +64,4 @@ export const getStaticPaths: GetStaticPaths = () => {
     paths,
     fallback: false,
   };
-}
+};

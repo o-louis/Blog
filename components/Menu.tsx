@@ -5,7 +5,7 @@ const Menu = () => {
   return (
     <nav>
       <ul className="rounded-full flex capitalize gap-x-9 px-7 py-1 border border-gray-600 shadow-md text-md font-medium">
-        {entries.map(entry => (
+        {entries.map((entry) => (
           <li key={entry} className=" hover:transition-all hover:text-tertiary">
             <Link href={`/${entry}`}>{entry}</Link>
           </li>

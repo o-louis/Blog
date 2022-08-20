@@ -6,5 +6,9 @@ interface Props {
 }
 export default function Date({ dateString, className }: Props) {
   const date = parseISO(dateString);
-  return <time dateTime={dateString} className={className}>{format(date, 'LLLL d, yyyy')}</time>;
+  return (
+    <time dateTime={dateString} className={className}>
+      {format(date, 'LLLL d, yyyy')}
+    </time>
+  );
 }

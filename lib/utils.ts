@@ -5,4 +5,4 @@ export const buildImage = (image: string, width: number, height: number) => {
     url = `${url}w=${width}&q=${height}`;
   }
   return url;
-}
+};

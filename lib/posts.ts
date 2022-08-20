@@ -1,9 +1,9 @@
 import fs from 'fs';
-import path from 'path';
 import matter from 'gray-matter';
+import path from 'path';
 import { remark } from 'remark';
 import html from 'remark-html';
-import remarkPrism from "remark-prism";
+import remarkPrism from 'remark-prism';
 
 const postsDirectory = path.join(process.cwd(), 'posts');
 
@@ -68,6 +68,11 @@ export async function getPostData(id) {
   return {
     id,
     contentHtml,
-    ...matterResult.data as { date: string, title: string, image?: string, tags: string[] },
+    ...(matterResult.data as {
+      date: string;
+      title: string;
+      image?: string;
+      tags: string[];
+    }),
   };
 }

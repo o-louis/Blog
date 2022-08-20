@@ -16,13 +16,14 @@ If/Else :
 
 ```js
 if (horrorMovie) {
-  movie = "Rec";
+  movie = 'Rec';
 } else {
-  movie = "Spiderman";
+  movie = 'Spiderman';
 }
 ```
+
 Can be shortened like this :
 
 ```js
-movie = horrorMovie ? "Rec" : "Spiderman";
+movie = horrorMovie ? 'Rec' : 'Spiderman';
 ```
