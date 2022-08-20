@@ -1,5 +1,5 @@
-import Link from 'next/link';
 import { GetStaticProps } from 'next';
+import Link from 'next/link';
 import { getSortedPostsData } from '../lib/posts';
 
 import Date from '../components/Date';
@@ -33,12 +33,12 @@ export default function Articles({ allPostsData }: Props) {
         {allPostsData.map(({ id, date, title, tags }) => (
           <article
             key={id}
-            className="flex flex-col py-4 px-4 border-b border-gray-800 hover:text-tertiary"
+            className="flex flex-col py-4 px-4 border-b border-gray-800 hover:bg-white hover:text-black"
           >
             <Link href={`/articles/${id}`}>
               <a className="flex justify-between align-center">
                 <span className="text-xl">{title}</span>
-                <Date dateString={date} className="text-md text-gray-500" />
+                <Date dateString={date} className="text-sm" />
               </a>
             </Link>
             <ul className="mt-4 self-end flex gap-x-2">
