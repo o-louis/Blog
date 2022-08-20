@@ -32,7 +32,7 @@ export default function Post({ postData }: Props) {
           title={postData.title}
           width={width}
           height={height}
-          className="object-cover"
+          className="object-cover rounded-sm"
         />
         <div className="px-8 flex flex-col">
           <h1 className="mt-8 text-3xl font-bold text-main">{postData.title}</h1>
