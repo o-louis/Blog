@@ -2,8 +2,10 @@ import { GetStaticProps } from 'next';
 import Link from 'next/link';
 import { getSortedPostsData } from '../lib/posts';
 
+import { useEffect, useState } from 'react';
 import Date from '../components/Date';
 import Layout from '../components/Layout';
+import SearchBar from '../components/SearchBar';
 
 interface Props {
   allPostsData: Array<{
@@ -27,10 +29,21 @@ const COLORTAGS = {
 };
 
 export default function Articles({ allPostsData }: Props) {
+  const [search, setSearch] = useState('');
+  const [articles, setArticles] = useState(allPostsData);
+
+  useEffect(() => {
+    const searchResult = allPostsData.filter((posts) =>
+      posts.title.includes(search)
+    );
+    setArticles(searchResult);
+  }, [search]);
+
   return (
     <Layout>
+      <SearchBar setSearch={setSearch} />
       <section className="py-10">
-        {allPostsData.map(({ id, date, title, tags }) => (
+        {articles.slice(0, 10).map(({ id, date, title, tags }) => (
           <article
             key={id}
             className="flex flex-col py-4 px-4 border-b border-gray-800 hover:bg-white hover:text-black"
