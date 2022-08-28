@@ -29,7 +29,7 @@ export default function Home({ allPostsData }: Props) {
       </Head>
       <section className="mt-14">
         <h1 className="text-5xl font-bold">Recent</h1>
-        <ul className="mt-8 grid gap-14 grid-cols-3">
+        <ul className="mt-8 flex flex-col gap-14 md:grid md:grid-cols-3">
           {allPostsData
             .slice(0, 4)
             .map(({ id, date, title, image, description }, idx) => {
@@ -38,7 +38,9 @@ export default function Home({ allPostsData }: Props) {
               return (
                 <li
                   key={id}
-                  className={`flex ${isLatestPost ? 'col-span-3' : 'flex-col'}`}
+                  className={`flex flex-col ${
+                    isLatestPost && 'md:flex-row md:col-span-3'
+                  }`}
                 >
                   <Image
                     src={urlImage}
@@ -49,27 +51,27 @@ export default function Home({ allPostsData }: Props) {
                   />
                   <div
                     className={`flex flex-col max-w-md ${
-                      isLatestPost ? 'ml-8' : ''
+                      isLatestPost && 'md:ml-8'
                     }`}
                   >
                     <Date
                       dateString={date}
-                      className={`text-sm text-gray-500 ${
-                        isLatestPost ? '' : 'mt-4'
+                      className={`text-sm text-gray-500 mt-4 ${
+                        isLatestPost && 'md:mt-0'
                       }`}
                     />
                     <Link href={`/articles/${id}`}>
                       <a className="flex flex-col mt-2">
                         <span
-                          className={`font-semibold ${
-                            isLatestPost ? 'text-3xl' : 'text-xl'
+                          className={`font-semibold text-xl ${
+                            isLatestPost && 'md:text-3xl'
                           }`}
                         >
                           {title}
                         </span>
                         <span
-                          className={`mt-4 fomt-medium text-paragraph ${
-                            isLatestPost ? 'text-lg' : 'text-sm'
+                          className={`mt-4 fomt-medium text-paragraph text-sm ${
+                            isLatestPost && 'md:text-lg'
                           }`}
                         >
                           {description}
