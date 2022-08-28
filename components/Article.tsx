@@ -1,14 +1,10 @@
 import Link from 'next/link';
+import { TArticle } from '../lib/posts';
 
 import Date from './Date';
 
-interface Props {
-  article: {
-    id: string;
-    date: string;
-    title: string;
-    tags: string[];
-  };
+interface ArticleProps {
+  article: TArticle;
 }
 
 const COLORTAGS = {
@@ -23,7 +19,7 @@ const COLORTAGS = {
   nuxt: 'bg-emerald-900 text-white',
 };
 
-const Article = ({ article: { id, date, title, tags } }: Props) => {
+const Article = ({ article: { id, date, title, tags } }: ArticleProps) => {
   return (
     <article
       key={id}

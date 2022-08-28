@@ -1,26 +1,21 @@
+import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
-import { GetStaticProps, GetStaticPaths } from 'next';
 
-import { getAllPostIds, getPostData } from '../../lib/posts';
-import Layout from '../../components/Layout';
 import Date from '../../components/Date';
+import Layout from '../../components/Layout';
+import { getAllPostIds, getPostData, Markdown } from '../../lib/posts';
 import { buildImage } from '../../lib/utils';
 
-interface Props {
-  postData: {
-    title: string;
-    date: string;
-    image?: string;
-    contentHtml: string;
-    tags: string[];
-  };
+interface PostProps {
+  postData: Markdown;
 }
 
-export default function Post({ postData }: Props) {
+export default function Post({ postData }: PostProps) {
   const width = 1024;
   const height = 384;
   const urlImage = buildImage(postData.image, width, height);
+
   return (
     <Layout>
       <Head>

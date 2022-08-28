@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-interface Props {
+interface SearchByTagsProps {
   availableTags: string[];
   setFilterTags: React.Dispatch<React.SetStateAction<string[]>>;
 }
@@ -14,7 +14,7 @@ const CloseIcon = () => (
   </svg>
 );
 
-const SearchByTags = ({ availableTags, setFilterTags }: Props) => {
+const SearchByTags = ({ availableTags, setFilterTags }: SearchByTagsProps) => {
   const [selectedTags, setSelectedTags] = useState([]);
 
   const isTagSelected = (tag): boolean =>

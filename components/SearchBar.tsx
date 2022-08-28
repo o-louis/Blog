@@ -1,8 +1,8 @@
-interface Props {
+interface SearchBarProps {
   setSearch: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const SearchBar = ({ setSearch }: Props) => {
+const SearchBar = ({ setSearch }: SearchBarProps) => {
   return (
     <form className="mt-14">
       <div className="relative">

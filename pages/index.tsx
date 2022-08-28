@@ -5,20 +5,14 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Date from '../components/Date';
 import Layout from '../components/Layout';
-import { getSortedPostsData } from '../lib/posts';
+import { getSortedPostsData, TArticle } from '../lib/posts';
 import { buildImage } from '../lib/utils';
 
-interface Props {
-  allPostsData: Array<{
-    id: string;
-    date: string;
-    title: string;
-    image?: string;
-    description: string;
-  }>;
+interface HomeProps {
+  allPostsData: TArticle[];
 }
 
-export default function Home({ allPostsData }: Props) {
+export default function Home({ allPostsData }: HomeProps) {
   const width = 400;
   const height = 210;
 

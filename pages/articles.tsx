@@ -1,5 +1,5 @@
 import { GetStaticProps } from 'next';
-import { getSortedPostsData } from '../lib/posts';
+import { getSortedPostsData, TArticle } from '../lib/posts';
 
 import { useEffect, useState } from 'react';
 import Article from '../components/Article';
@@ -7,16 +7,11 @@ import Layout from '../components/Layout';
 import SearchBar from '../components/SearchBar';
 import SearchByTags from '../components/SearchByTags';
 
-interface Props {
-  allPostsData: Array<{
-    id: string;
-    date: string;
-    title: string;
-    tags: string[];
-  }>;
+interface ArticlesProps {
+  allPostsData: TArticle[];
 }
 
-export default function Articles({ allPostsData }: Props) {
+export default function Articles({ allPostsData }: ArticlesProps) {
   const [search, setSearch] = useState('');
   const [filterTags, setFilterTags] = useState([]);
   const [articles, setArticles] = useState(allPostsData);

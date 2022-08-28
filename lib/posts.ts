@@ -7,7 +7,20 @@ import remarkPrism from 'remark-prism';
 
 const postsDirectory = path.join(process.cwd(), 'posts');
 
-export function getSortedPostsData() {
+export type TArticle = {
+  id: string;
+  date: string;
+  title: string;
+  image?: string;
+  tags: string[];
+  description: string;
+};
+
+export interface Markdown extends TArticle {
+  contentHtml: string;
+}
+
+export function getSortedPostsData(): TArticle[] {
   // Get file names under /posts
   const fileNames = fs.readdirSync(postsDirectory);
   const allPostsData = fileNames.map((fileName) => {
@@ -24,9 +37,10 @@ export function getSortedPostsData() {
     // Combine the data with the id
     return {
       id,
-      ...matterResult.data,
+      ...(matterResult.data as Omit<TArticle, 'id'>),
     };
   });
+
   // Sort posts by date
   return allPostsData.sort((a, b) => {
     if (a < b) {
@@ -39,7 +53,7 @@ export function getSortedPostsData() {
   });
 }
 
-export function getAllPostIds() {
+export function getAllPostIds(): Array<{ params: { id: string } }> {
   const fileNames = fs.readdirSync(postsDirectory);
   return fileNames.map((fileName) => {
     return {
@@ -50,7 +64,7 @@ export function getAllPostIds() {
   });
 }
 
-export async function getPostData(id) {
+export async function getPostData(id): Promise<Markdown> {
   const fullPath = path.join(postsDirectory, `${id}.md`);
   const fileContents = fs.readFileSync(fullPath, 'utf8');
 
@@ -68,11 +82,6 @@ export async function getPostData(id) {
   return {
     id,
     contentHtml,
-    ...(matterResult.data as {
-      date: string;
-      title: string;
-      image?: string;
-      tags: string[];
-    }),
+    ...(matterResult.data as Omit<TArticle, 'id' | 'contentHtml'>),
   };
 }
